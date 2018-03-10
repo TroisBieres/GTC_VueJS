@@ -4,21 +4,19 @@
        <input type="hidden" name="tableName" value="T_Partie">
         <h4 class="ui dividing header">Ajout d'une partie: </h4>
         <div class="field">
+          {{disponibilites}}
           <label for="disponibilite">Disponibilité</label>
           <select   class="ui fluid dropdown"
                     id="disponibilite"
                     name="disponibilite"
                     required>
             <option value="" selected disabled>Choisir une disponibilité</option>
-<!--            <% for(var i=0; i<T_Disponibilite.length; i++) {%>
-              <option value=<%= T_Disponibilite[i].id_Disponibilite %>>
-                <%= T_Disponibilite[i].Con_Name %>:
-                <%= T_Disponibilite[i].Sys_Name %> -
-                <%= T_Disponibilite[i].Sce_Name %> |
-                <%= T_Disponibilite[i].Dis_Schedule %>
-              </option>
-            <% } %>
-  -->
+            <option v-for="disponibilite in disponibilites" :key="disponibilite.id_Disponibilite" :value="disponibilite.id_Disponibilite">
+              {{disponibilite.Con_Name}} :
+              {{disponibilite.Sys_Name}} -
+              {{disponibilite.Sce_Name}} |
+              {{disponibilite.Dis_Schedule}}
+            </option>
           </select>
         </div>
         <div class="field">
@@ -34,7 +32,23 @@
 
 <script>
 export default {
-  name: 'Partie'
+  name: 'Partie',
+  data () {
+    return {
+      disponibilites: {},
+      disponibilite: {}
+    }
+  },
+  mounted () {
+    this.$http.get('http://localhost:3000/api/T_Disponibilites').then(
+      (res) => {
+        this.disponibilites = res.data
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+  }
 }
 </script>
 
