@@ -7,7 +7,7 @@
          <label for="name">Nom</label>
          <input type="text" id="name" name="name" placeholder="Nom de l'association" required>
        </div>
-       <button type="submit" class="ui blue labeled submit icon button">
+       <button  class="ui blue labeled submit icon button">
          <i class="icon edit"></i> Envoyer
        </button>
     </form>

@@ -18,83 +18,23 @@
       </div>
     </div>
 <!--    <router-view/> -->
-    <div v-if='idOnglet=="Association"'>
-      <form class="ui form" method="post" action="/Association">
-        <input type="hidden" name="tableName" value="T_Association">
-        <h4 class="ui dividing header">Ajout d'une association: </h4>
-        <div class="required field">
-          <label for="name">Nom</label>
-          <input type="text" id="name" name="name" placeholder="Nom de l'association" required>
-        </div>
-        <button type="submit" class="ui blue labeled submit icon button">
-          <i class="icon edit"></i> Envoyer
-        </button>
-      </form>
-    </div>
-    <div v-if='idOnglet=="Convention"'>
-      <form class="ui form" method="post" action="/Convention">
-        <input type="hidden" name="tableName" value="T_Convention">
-        <h4 class="ui dividing header">Ajout d'une convention: </h4>
-        <div class="required field">
-          <label for="name">Nom</label>
-          <input  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Nom de la convention"
-                  required />
-        </div>
-        <div class="required field">
-    <label for="name">Nombre de tables</label>
-    <input  type="number"
-            id="tablenumber"
-            name="tablenumber"
-            min="1"
-            step="1"
-            required />
-  </div>
-  <div class="required field">
-    <label for="schedule1">Date de début</label>
-    <div class="two fields">
-      <div class="field">
-        <input  type="date"
-                id="schedule1_1"
-                name="schedule1_1"
-                required />
-      </div>
-      <div class="field">
-        <input  type="time"
-                id="schedule1_2"
-                name="schedule1_2"
-                required />
-      </div>
-    </div>
-  </div>
-  <div class="required field">
-    <label for="schedule2">Date de fin</label>
-    <div class="two fields">
-      <div class="field">
-        <input  type="date"
-                id="schedule2_1"
-                name="schedule2_1"
-                required />
-      </div>
-      <div class="field">
-        <input  type="time"
-                id="schedule2_2"
-                name="schedule2_2"
-                required />
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="ui blue labeled submit icon button">
-    <i class="icon edit"></i> Envoyer
-  </button>
-      </form>
-    </div>
+    <association v-if='idOnglet=="Association"'></association>
+    <convention v-if='idOnglet=="Convention"'></convention>
+    <disponibilite v-if='idOnglet=="Disponibilite"'></disponibilite>
+    <partie v-if='idOnglet=="Partie"'></partie>
+    <scenario v-if='idOnglet=="Scenario"'></scenario>
+    <systeme v-if='idOnglet=="Systeme"'></systeme>
   </div>
 </template>
 
 <script>
+import Association from '@/components/Association'
+import Convention from '@/components/Convention'
+import Disponibilite from '@/components/Disponibilite'
+import Partie from '@/components/Partie'
+import Scenario from '@/components/Scenario'
+import Systeme from '@/components/Systeme'
+
 export default {
   name: 'App',
   data () {
@@ -102,6 +42,14 @@ export default {
       idOnglet: '',
       lol: '""'
     }
+  },
+  components: {
+    Association,
+    Convention,
+    Disponibilite,
+    Partie,
+    Scenario,
+    Systeme
   },
   methods: {
     openAssociation: function () {
