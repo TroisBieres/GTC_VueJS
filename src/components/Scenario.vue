@@ -63,7 +63,31 @@
 
 <script>
 export default {
-  name: 'Scenario'
+  name: 'Scenario',
+  data () {
+    return {
+      systemes: {},
+      organistateurs: {}
+    }
+  },
+  mounted () {
+    this.$http.get('http://localhost:3000/api/T_Systemes').then(
+      (res) => {
+        this.systeme = res.data
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
+/*    this.$http.get('http://localhost:3000/api/T_Scenarios').then(
+      (res) => {
+        this.scenarios = res.data
+      },
+      (err) => {
+        console.log(err)
+      }
+    )*/
+  }
 }
 </script>
 
